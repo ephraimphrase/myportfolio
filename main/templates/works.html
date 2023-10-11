@@ -1,0 +1,59 @@
+{% extends "dashbase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="section-container">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-sm-8 col-sm-offset-2 section-container-spacer">
+          <div class="text-center">
+            <h1 class="h2">02 : Works</h1>
+            <p>Each project featured here highlights my ability to harness the power of Django's robust framework, combined with the dynamic capabilities of Flutter, to develop seamless and intuitive user experiences.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-12">
+       
+        <div id="myCarousel" class="carousel slide projects-carousel">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            {% for work_group in work_groups %}
+              <div class="item {% if forloop.first %} active{% endif %}">
+                <div class="row">
+                  {% for work in work_group %}
+                  <div class="col-sm-4">
+                    <a href="{% url "work" work.id %}" title="" class="black-image-project-hover">
+                      <img src="{{work.work_image.url}}" alt="" class="img-responsive">
+                    </a>
+                    <div class="card-container card-container-lg">
+                      <h4>00{{work.work_number}}/00{{work_count}}</h4>
+                      <h3>{{work.name}}</h3>
+                      <p>{{work.description}}</p>
+                      <a href="{% url "work" work.id %}" title="" class="btn btn-default">Discover</a>
+                    </div>
+                  </div>
+                  {% endfor %}  
+                </div>
+                <!--/row-->
+            </div>
+            <!--/item-->
+            {% endfor %}
+          </div>
+          <!--/carousel-inner--> 
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+  
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+       </div>
+      <!--/myCarousel-->
+      </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+       navActivePage();
+    });
+  </script>
+{% endblock content %}

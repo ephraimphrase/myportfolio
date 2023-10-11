@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-icon-180x180.png' %}">
+    {% comment %} <link rel="shortcut icon" href="{% static '' %}" type="image/x-icon"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'styles/main.3f6952e4.css' %}">
+    <title>{{title}}</title>
+</head>
+<body class="minimal">
+    <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div>
+    <header>
+        <nav class="navbar  navbar-fixed-top navbar-default">
+            <div class="container">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav ">
+                        <li><a href="{% url "index" %}" title="">01 : Home</a></li>
+                        <li><a href="{% url "works" %}" title="">02 : Works</a></li>
+                        <li><a href="{% url "about" %}" title="">03 : About me</a></li>
+                        <li><a href="{% url "contact" %}" title="">04 : Contact</a></li>
+                    </ul>
+                </div> 
+            </div>
+        </nav>
+    </header>
+    {% block content %}
+    
+    {% endblock content %}
+    <script type="text/javascript" src="{% static 'styles/main.70a66962.js' %}"></script>
+</body>
+</html>

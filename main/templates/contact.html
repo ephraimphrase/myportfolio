@@ -1,0 +1,79 @@
+{% extends "dashbase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="section-container-spacer text-center">
+            <h1 class="h2">03 : Contact me</h1>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+               <form method="POST" action="{% url "contact" %}" class="reveal-content">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-7">
+                      <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Email", name="email">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="subject" placeholder="Subject", name="subject">
+                      </div>
+                      <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Enter your message", name="message"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-default btn-lg">Send</button>
+                    </div>
+                    <div class="col-md-5 address-container">
+                      <ul class="list-unstyled">
+                        <li>
+                          <span class="fa-icon">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                          </span>
+                          + 234 813 071 3740 
+                        </li>
+                        <li>
+                          <span class="fa-icon">
+                            <i class="fa fa-at" aria-hidden="true"></i>
+                          </span>
+                          ephraimphrase@gmail.com
+                        </li>
+                        <li>
+                          <span class="fa-icon">
+                            <i class="fa fa fa-map-marker" aria-hidden="true"></i>
+                          </span>
+                          No.6 Okejire Street Off Jakpa road, Effurun, Delta State, Nigeria
+                        </li>
+                      </ul>
+                      <h3>Follow me on social networks</h3>
+                      <a href="http://www.facebook.com" title="" class="fa-icon">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                      <a href="http://www.twitter.com" title="" class="fa-icon">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                      <a href="http://www.linkedin.com" title="" class="fa-icon">
+                        <i class="fa fa-linkedin"></i>
+                      </a>
+
+                    </div>
+                  </div>
+                </form>
+            </div>
+
+          </div>
+         
+       </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+{% endblock content %}

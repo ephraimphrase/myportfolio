@@ -1,0 +1,45 @@
+{% extends "dashbase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="section-container-spacer text-center">
+            <h1 class="h2">01 : About me</h1>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="row">
+                <div class="col-xs-12 col-md-6">
+                  <h3>Who am I?</h3>
+                  <p>With a passion for creating seamless user experiences and a knack for building cutting-edge mobile applications, I am Ephraim, a mobile developer proficient in Django and Flutter technologies.</p>
+                  <h3>What do I do? </h3>
+                  <p>Harnessing the power of Django, I utilize its robust and scalable framework to develop highly functional back-end systems that keep your app running smoothly. Combining it with the dynamic capabilities of Flutter, I create stunning user interfaces that not only captivate attention but also deliver unmatched performance across multiple platforms. 
+                  <h3>Why should you hire me?</h3>
+                  <p>
+                    I am driven by my genuine love for coding and my commitment to staying updated with the latest trends and advancements in mobile development. This dedication ensures that I am always equipped to deliver innovative solutions that push the boundaries of what is possible.
+
+Collaboration, communication, and attention to detail are at the core of my work ethic. By actively involving clients throughout the development process, I ensure that their vision is brought to life, while also adding my own touch of creativity and expertise.</p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <img src="{% static "images/profil.jpg" %}" class="img-responsive" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+       </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+{% endblock content %}
