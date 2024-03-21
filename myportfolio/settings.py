@@ -164,7 +164,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-9712.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-9712.up.railway.app']
 
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(conn_max_age=500, conn_health_checks=True)

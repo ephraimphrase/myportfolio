@@ -19,7 +19,7 @@ def contact(request):
         message = Message.objects.create(email=email, subject=subject, message=message)
         message.save()
 
-        # send_message_email(message.id, email, message, subject)
+        send_message_email(message.id, email, message, subject)
 
         return redirect('index')
 
