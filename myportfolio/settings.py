@@ -12,21 +12,25 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env_path = load_dotenv(os.path.join(BASE_DIR, '.env'))
+load_dotenv(env_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(rw%cq4wftxdp*^=+qnynn#awr(v$w4m0!i1k%7-%1r$mfsz&q'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-(rw%cq4wftxdp*^=+qnynn#awr(v$w4m0!i1k%7-%1r$mfsz&q')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +55,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STORAGES = {
+    # ...
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 ROOT_URLCONF = 'myportfolio.urls'
 
@@ -131,3 +146,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_HOST = 'mail.naijamerit.com.ng'
+EMAIL_HOST_USER = 'test@naijamerit.com.ng'
+EMAIL_HOST_PASSWORD = 'test@naijamerit.com.ng'
+EMAIL_PORT = 465
+# EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+CELERY_BROKER_URL = "redis://default:kQCInXrffQcYwrezWqnfnGJzfLEVRjmc@viaduct.proxy.rlwy.net:35323"
+CELERY_RESULT_BACKEND = "redis://default:kQCInXrffQcYwrezWqnfnGJzfLEVRjmc@viaduct.proxy.rlwy.net:35323"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+CSRF_TRUSTED_ORIGINS = ['https://web-production-339d.up.railway.app']
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(conn_max_age=500, conn_health_checks=True)

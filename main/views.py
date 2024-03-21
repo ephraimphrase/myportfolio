@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Work, Message, Review
+from .tasks import send_message_email
 
 # Create your views here.
 def index(request):
@@ -17,6 +18,8 @@ def contact(request):
 
         message = Message.objects.create(email=email, subject=subject, message=message)
         message.save()
+
+        send_message_email(message.id, email, message, subject)
 
         return redirect('index')
 
